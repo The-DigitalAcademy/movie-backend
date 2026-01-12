@@ -1,4 +1,4 @@
-package com.MovieBackendApplication.MovieBackendApplication.model;
+package com.movie.movie_app_backend.Models;
 
 import jakarta.persistence.*;
 

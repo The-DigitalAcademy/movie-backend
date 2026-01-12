@@ -2,6 +2,7 @@ package com.movie.movie_app_backend.Controllers;
 
 import com.movie.movie_app_backend.Models.GenresModel;
 import com.movie.movie_app_backend.Services.GenreService;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,9 @@ public class GenresController {
     }
 
     @PostMapping
-    public Object createCategories(@RequestBody GenresModel genre) {
+    public Object createGenres(@RequestBody GenresModel genre) {
         return service.addGenre(genre);
     }
+
 
 }

@@ -1,9 +1,9 @@
-package com.MovieBackendApplication.MovieBackendApplication.controller;
+package com.movie.movie_app_backend.Controllers;
 
-import com.MovieBackendApplication.MovieBackendApplication.dto.SignUpRequest;
-import com.MovieBackendApplication.MovieBackendApplication.dto.AuthResponse;
-import com.MovieBackendApplication.MovieBackendApplication.dto.LoginRequest;
-import com.MovieBackendApplication.MovieBackendApplication.service.AuthService;
+import com.movie.movie_app_backend.DTO.SignUpRequest;
+import com.movie.movie_app_backend.DTO.AuthResponse;
+import com.movie.movie_app_backend.DTO.LoginRequest;
+import com.movie.movie_app_backend.Services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

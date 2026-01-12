@@ -1,4 +1,4 @@
-package com.MovieBackendApplication.MovieBackendApplication.dto;
+package com.movie.movie_app_backend.DTO;
 
 public class AuthResponse {
 

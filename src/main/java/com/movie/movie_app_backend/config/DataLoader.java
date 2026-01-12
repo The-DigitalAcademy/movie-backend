@@ -1,7 +1,7 @@
-package com.MovieBackendApplication.MovieBackendApplication.config;
+package com.movie.movie_app_backend.config;
 
-import com.MovieBackendApplication.MovieBackendApplication.model.Role;
-import com.MovieBackendApplication.MovieBackendApplication.repository.RoleRepository;
+import com.movie.movie_app_backend.Models.Role;
+import com.movie.movie_app_backend.Repositories.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
