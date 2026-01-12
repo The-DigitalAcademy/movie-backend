@@ -24,12 +24,12 @@ public class UsersController {
     }
 
     @GetMapping
-    public List<UsersModel> getAllCategories() {
+    public List<UsersModel> getAllUsers() {
         return service.getUsers();
     }
 
     @PostMapping
-    public UsersModel createCategories(@RequestBody UsersModel user) {
+    public UsersModel createUsers(@RequestBody UsersModel user) {
         return service.addUser(user);
     }
 

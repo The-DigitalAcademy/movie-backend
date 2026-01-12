@@ -2,7 +2,7 @@ package com.movie.movie_app_backend.Controllers;
 
 import com.movie.movie_app_backend.DTO.SignUpRequest;
 import com.movie.movie_app_backend.DTO.AuthResponse;
-import com.movie.movie_app_backend.DTO.LoginRequest;
+import com.movie.movie_app_backend.DTO.UsersLoginDTO;
 import com.movie.movie_app_backend.Services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class AuthController {
 
     // LOGIN endpoint
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody UsersLoginDTO request) {
         authService.login(request);
         return ResponseEntity.ok(new AuthResponse("Login successful"));
     }

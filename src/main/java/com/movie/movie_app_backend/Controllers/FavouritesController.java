@@ -21,12 +21,12 @@ public class FavouritesController {
     }
 
     @GetMapping
-    public Object getAllCategories() {
+    public Object getAllFavourites() {
         return service.getFavourites();
     }
 
     @PostMapping
-    public Object createCategories(@RequestBody FavouritesModel favourite) {
+    public Object createFavourites(@RequestBody FavouritesModel favourite) {
         return service.addFavourite(favourite);
     }
 
