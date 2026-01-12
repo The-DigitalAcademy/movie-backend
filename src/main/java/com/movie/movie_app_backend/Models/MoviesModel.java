@@ -15,6 +15,7 @@ import java.util.Date;
 @Entity(name = "Movies")
 @EntityListeners(AuditingEntityListener.class)
 public class MoviesModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
