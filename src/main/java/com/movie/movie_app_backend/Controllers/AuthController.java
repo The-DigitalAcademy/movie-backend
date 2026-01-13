@@ -1,5 +1,6 @@
 package com.movie.movie_app_backend.Controllers;
 
+import com.movie.movie_app_backend.Models.UsersModel;
 import com.movie.movie_app_backend.DTO.SignUpRequest;
 import com.movie.movie_app_backend.DTO.AuthResponse;
 import com.movie.movie_app_backend.DTO.LoginRequest;
@@ -29,8 +30,9 @@ public class AuthController {
 
     // LOGIN endpoint
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-        authService.login(request);
-        return ResponseEntity.ok(new AuthResponse("Login successful"));
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        UsersModel user = authService.login(request);
+        user.setPassword(null);
+        return ResponseEntity.ok(user);
     }
 }

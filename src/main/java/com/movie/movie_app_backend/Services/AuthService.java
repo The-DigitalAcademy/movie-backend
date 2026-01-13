@@ -38,15 +38,21 @@ public class AuthService {
     }
 
     // LOGIN logic
-    public void login(LoginRequest request) {
+    public UsersModel login(LoginRequest request) {
 
         // Find user by email
         UsersModel user = UserRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
 
-        // Compare raw password with encrypted one
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+        // Compare raw password with hashed one
+        boolean passwordMatches = passwordEncoder.matches(request.getPassword(), user.getPassword());
+
+        {
+            if (!passwordMatches) {
+                throw new RuntimeException("Invalid credentials");
+            }
+
+            return user;
         }
     }
 }
