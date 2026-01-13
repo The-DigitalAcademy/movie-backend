@@ -2,7 +2,6 @@ package com.movie.movie_app_backend.Services;
 
 import com.movie.movie_app_backend.DTO.LoginRequest;
 import com.movie.movie_app_backend.DTO.SignUpRequest;
-import com.movie.movie_app_backend.DTO.UsersLoginDTO;
 import com.movie.movie_app_backend.Models.UsersModel;
 import com.movie.movie_app_backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,31 +22,45 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-//    public void signup(SignUpRequest request){
-//        // to prevent duplicate accounts
-//        if(UserRepository.existsByEmail(request.getEmail())){
-//            throw new RuntimeException("Email already exists");
-//        }
-//        //Creating a new user
-//        UsersModel user = new UsersModel();
-//        user.setUsername(request.getUsername());
-//        user.setEmail(request.getEmail());
-//
-//        // Encrypt password before saving
-//        user.setPassword(passwordEncoder.encode(request.getPassword()));
-//
-//    }
+    public void signup(SignUpRequest request){
+        // to prevent duplicate accounts
+        if(UserRepository.existsByEmail(request.getEmail())){
+            throw new RuntimeException("Email already exists");
+        }
+        //Creating a new user
+        UsersModel user = new UsersModel();
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
+
+        // Encrypt password before saving
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        try {
+            UserRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // LOGIN logic
-    public void login(UsersLoginDTO request) {
+    public UsersModel login(LoginRequest request) {
 
         // Find user by email
-        UsersModel user = UserRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+        UsersModel user = UserRepository.findByEmail(request.getEmail());
 
-        // Compare raw password with encrypted one
-        if (!request.getPassword().equals(user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+        if(user == null){
+            return null;
         }
+
+        // Compare raw password with hashed one
+        boolean passwordMatches = passwordEncoder.matches(request.getPassword(), user.getPassword());
+
+
+            if (!passwordMatches) {
+                throw new RuntimeException("Invalid credentials");
+            }
+
+            return user;
+
     }
 }
