@@ -35,24 +35,32 @@ public class AuthService {
         // Encrypt password before saving
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
+        try {
+            UserRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // LOGIN logic
     public UsersModel login(LoginRequest request) {
 
         // Find user by email
-        UsersModel user = UserRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+        UsersModel user = UserRepository.findByEmail(request.getEmail());
+
+        if(user == null){
+            return null;
+        }
 
         // Compare raw password with hashed one
         boolean passwordMatches = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
-        {
+
             if (!passwordMatches) {
                 throw new RuntimeException("Invalid credentials");
             }
 
             return user;
-        }
+
     }
 }
