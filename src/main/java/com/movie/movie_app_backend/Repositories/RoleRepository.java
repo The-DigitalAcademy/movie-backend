@@ -1,6 +1,6 @@
-package com.MovieBackendApplication.MovieBackendApplication.repository;
+package com.movie.movie_app_backend.Repositories;
 
-import com.MovieBackendApplication.MovieBackendApplication.model.Role;
+import com.movie.movie_app_backend.Models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
