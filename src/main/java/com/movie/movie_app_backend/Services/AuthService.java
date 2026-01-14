@@ -4,9 +4,12 @@ import com.movie.movie_app_backend.DTO.LoginRequest;
 import com.movie.movie_app_backend.DTO.SignUpRequest;
 import com.movie.movie_app_backend.Models.UsersModel;
 import com.movie.movie_app_backend.Repositories.UserRepository;
+import com.movie.movie_app_backend.exception.UserRegisterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class AuthService {
@@ -25,7 +28,7 @@ public class AuthService {
     public void signup(SignUpRequest request){
         // to prevent duplicate accounts
         if(UserRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("Email already exists");
+            throw new UserRegisterException();
         }
         //Creating a new user
         UsersModel user = new UsersModel();
@@ -44,7 +47,6 @@ public class AuthService {
 
     // LOGIN logic
     public UsersModel login(LoginRequest request) {
-
         // Find user by email
         UsersModel user = UserRepository.findByEmail(request.getEmail());
 
@@ -55,12 +57,10 @@ public class AuthService {
         // Compare raw password with hashed one
         boolean passwordMatches = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
+        if (!passwordMatches) {
+            return null;
+        }
 
-            if (!passwordMatches) {
-                throw new RuntimeException("Invalid credentials");
-            }
-
-            return user;
-
+        return user;
     }
 }
