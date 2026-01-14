@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/favourites")
+@CrossOrigin(origins = "http://localhost:4200") // Frontend access
 public class FavouritesController {
     @Autowired
     private final FavouriteService service;
