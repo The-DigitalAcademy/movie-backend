@@ -21,5 +21,4 @@ public class FavouriteService {
     public FavouritesModel addFavourite(FavouritesModel favourite) {
         return FavouriteRepository.save(favourite);
     }
-
 }
