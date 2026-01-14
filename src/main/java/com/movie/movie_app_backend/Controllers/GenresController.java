@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/genres")
+@CrossOrigin(origins = "http://localhost:4200") // Frontend access
 public class GenresController {
     @Autowired
     private final GenreService service;

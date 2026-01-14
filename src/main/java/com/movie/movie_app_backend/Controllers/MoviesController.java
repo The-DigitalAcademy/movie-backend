@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/movies")
+@CrossOrigin(origins = "http://localhost:4200") // Frontend access
 public class MoviesController {
     private final MovieService service;
     private final GenreService genreService;

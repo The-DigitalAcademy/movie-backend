@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController // Exposes REST APIs
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000") // Frontend access
+@CrossOrigin(origins = "http://localhost:4200") // Frontend access
 public class AuthController {
 
     @Autowired
