@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
+@CrossOrigin(origins = "http://localhost:4200") // Frontend access
 @RequiredArgsConstructor
 public class MoviesController {
 

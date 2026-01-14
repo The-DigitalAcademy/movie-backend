@@ -2,6 +2,7 @@ package com.movie.movie_app_backend.Controllers;
 
 import com.movie.movie_app_backend.Models.GenresModel;
 import com.movie.movie_app_backend.Services.GenreService;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/genres")
+@CrossOrigin(origins = "http://localhost:4200") // Frontend access
 public class GenresController {
     @Autowired
     private final GenreService service;
@@ -21,13 +23,14 @@ public class GenresController {
     }
 
     @GetMapping
-    public Object getAllCategories() {
+    public Object getAllGenres() {
         return service.getGenres();
     }
 
     @PostMapping
-    public Object createCategories(@RequestBody GenresModel genre) {
+    public Object createGenres(@RequestBody GenresModel genre) {
         return service.addGenre(genre);
     }
+
 
 }
